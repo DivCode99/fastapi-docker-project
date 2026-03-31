@@ -1,10 +1,17 @@
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from models import Product
 from dbconfig import session, engine
 import db_models
 from sqlalchemy.orm import Session
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+)
 
 db_models.Base.metadata.create_all(bind=engine)
 
