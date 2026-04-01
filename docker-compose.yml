@@ -1,0 +1,17 @@
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: fastapidb
+    ports:
+      - "5436:5432"   # changed
+
+  app:
+    build: .
+    ports:
+      - "8001:8000"   # changed
+    depends_on:
+      - db
